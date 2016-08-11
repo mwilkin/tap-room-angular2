@@ -14,10 +14,7 @@ import { Keg } from './keg.model';
     <input [(ngModel)]="keg.price" class="input-lg"/>
     <h4>Edit Keg Alcohol: </h4>
     <input [(ngModel)]="keg.alcohol" class="input-lg"/>
-    <button class="btn-primary"(click)="addKeg(newName, newBrand, newPrice, newAlcohol)">Update</button>
   </div>
-
-
   `
 })
 export class EditKegDetailsComponent {

@@ -10,9 +10,14 @@ import { NewKegComponent } from './new-keg.component';
   outputs: ['onKegSelect'],
   directives: [KegComponent, EditKegDetailsComponent, NewKegComponent],
   template:`
-  <keg-display *ngFor="#currentKeg of kegList" (click)="kegClicked(currentKeg)" [class.selected]="currentKeg === slectedKeg" [keg]="currentKeg"></keg-display>
+  <keg-display *ngFor="#currentKeg of kegList"
+    (click)="kegClicked(currentKeg)"
+    [class.selected]="currentKeg === selectedKeg"
+    [keg]="currentKeg">
+  </keg-display>
+  <h3>{{keg.name}}</h3>
   <new-keg (onSubmitNewKeg)="createKeg($event)"></new-keg>
-  <edit-keg-deails *ngIf="selectedKeg" [keg]="selectedKeg"></edit-keg-deails>
+  <edit-keg-details *ngIf="selectedKeg"[keg]="selectedKeg"></edit-keg-details>
   `
 })
 export class KegListComponent {
@@ -26,9 +31,14 @@ export class KegListComponent {
     this.selectedKeg = clickedKeg;
     this.onKegSelect.emit(clickedKeg);
   }
-  createKeg([name, brand]: string[], [price, alcohol]: number[]): void {
+  // createKeg([name, brand]: string[], [price, alcohol]: number[]): void {
+  //   this.kegList.push(
+  //     new Keg(name, brand, price, alcohol, this.kegList.length)
+  //   );
+  // }
+  createKeg(params: string[]): void {
     this.kegList.push(
-      new Keg(name, brand, price, alcohol, this.kegList.length)
-    );
-  }
+    new Keg(params[0], params[1], parseFloat(params[2]), parseFloat(params[3]), this.kegList.length)
+  );
+}
 }

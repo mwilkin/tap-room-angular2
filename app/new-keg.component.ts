@@ -11,8 +11,7 @@ import { Keg } from './keg.model';
       <input placeholder="Band" #newBrand>
       <input placeholder="Price" #newPrice>
       <input placeholder="Alcohol Content" #newAlcohol>
-
-      <button class="btn-primary" (click)="addKeg(newName, newBrand, newPrice, newAlcohol)">Add</button>
+      <button (click)="addKeg(newName, newBrand, newPrice, newAlcohol)" class="btn-primary">Add</button>
     </div>
   `
 })
@@ -22,7 +21,8 @@ import { Keg } from './keg.model';
       this.onSubmitNewKeg = new EventEmitter();
     }
     addKeg(userName: HTMLInputElement, userBrand: HTMLInputElement, userPrice: HTMLInputElement, userAlcohol: HTMLInputElement){
-    this.onSubmitNewKeg.emit([userName.value, userBrand.value, userPrice.value, userAlcohol.value]);
+      var params: String[] = [userName.value, userBrand.value, userPrice.value, userAlcohol.value]
+    this.onSubmitNewKeg.emit(params);
     userName.value = "";
     userBrand.value = "";
     userPrice.value = "";
