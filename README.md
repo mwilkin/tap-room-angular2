@@ -1,4 +1,4 @@
-* _Read me_
+* _Read Me_
 
 * _Run npm install; bower install_
 * _gem install typescript -g_
